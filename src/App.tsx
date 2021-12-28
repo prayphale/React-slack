@@ -2,6 +2,7 @@ import "./App.css";
 
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
+import Header from "./components/Headers";
 import React from "react";
 
 function App() {
@@ -10,9 +11,7 @@ function App() {
       <Router>
         <>
           <Routes>
-            <Route path="/" exact>
-              <h1>This is the homePage </h1>
-            </Route>
+            <Route path="/" element={<Header />} />
           </Routes>
         </>
       </Router>

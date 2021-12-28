@@ -1,0 +1,23 @@
+.HeaderAvatar{
+    &__container {
+        flex: 0.3;
+        display: flex;
+        align-items: center;
+        margin-left: 20px;
+    }
+
+    &__avatar {
+        cursor: pointer;
+
+        :hover {
+            opacity: 0.8;
+        }
+    }
+
+
+
+    &__clockIcon {
+        margin-left: 6rem;
+    }
+
+}
