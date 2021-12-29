@@ -4,15 +4,16 @@ import React from "react";
 
 function SidebarHeader() {
   return (
-    <div >
-      <div className="SidebarHeader">
-        <h3>Fun Discussion</h3>
-        <h6>
-        <i className="fas fa-circle" /> John
-        </h6>
+    <div className="SidebarHeader__container">
+      <div className="SidebarHeader__info">
+        <h2>Fun Discussion</h2>
+        <h3>
+          <i className="fas fa-circle" /> John
+        </h3>
       </div>
-      <i className="fa fa-pencil" />
-
+      <div className="SidebarHeader__pencilIcon">
+        <i className="fa fa-pencil fa-xs" />
+      </div>
       <div className="Sidebar"></div>
     </div>
   );

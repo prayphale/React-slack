@@ -1,0 +1,28 @@
+.SidebarOption {
+  &__container {
+    align-items: center;
+    cursor: pointer;
+
+    :hover {
+      opacity: 0.9;
+      background-color: #340e36;
+    }
+    div {
+      display: block;
+      padding: 0.5rem;
+      font-size: 0.7rem;
+      padding-left: 1rem;
+
+      i {
+        font-size: 0.7rem;
+        padding: 10;
+      }
+    }
+
+    hr {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #49274b;
+    }
+  }
+}

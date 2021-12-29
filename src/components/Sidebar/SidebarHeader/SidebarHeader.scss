@@ -1,9 +1,43 @@
 .SidebarHeader {
-    &__container {
+  &__container {
+    display: flex;
+    border-bottom: 1px solid #49274b;
+  }
 
+  &__circle {
+    color: green;
+  }
+
+  &__pencilIcon {
+    padding: 8px;
+    color: #49274b;
+    font-size: 18px;
+    background-color: white;
+    border-radius: 999px;
+  }
+
+  &__info {
+    flex: 1;
+    padding-left: 1rem;
+
+    h2 {
+      font-size: 15px;
+      font-weight: 900;
+      margin-bottom: 5px;
     }
 
-    &__circle {
-        color: green;
+    h3 {
+      display: flex;
+      font-size: 13px;
+      font-weight: 400;
+      align-items: center;
     }
+
+    i {
+      font-size: 8px;
+      // margin-top: 14px;
+      margin-right: 2px;
+      color: green;
+    }
+  }
 }
