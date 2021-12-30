@@ -1,0 +1,18 @@
+.Chat {
+    &__HeaderLeft{
+        display: flex;
+        align-items: center;
+
+        h4 {
+            display: flex;
+            text-transform: lowercase;
+            margin-right: 10px;
+          }
+
+          i {
+            margin-left: 0.3rem;
+            font-size: 18px;
+          }
+    }
+}
+

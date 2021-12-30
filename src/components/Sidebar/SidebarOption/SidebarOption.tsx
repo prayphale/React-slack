@@ -5,7 +5,6 @@ import { collection, doc, setDoc } from "firebase/firestore";
 import React from "react";
 import { db } from "src/firebase";
 import { enterRoom } from "src/features/appSlice";
-import { enterScope } from "immer/dist/internal";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { useDispatch } from "react-redux";
 
@@ -14,13 +13,12 @@ function SidebarOption() {
   const dispatch = useDispatch();
 
   const handleAddChannel = async () => {
-    console.log("here");
     const channelName = prompt("Please enter the channel name");
 
     if (channelName) {
-      const newCityRef = doc(collection(db, "rooms"));
+      const rooms = doc(collection(db, "rooms"));
 
-      await setDoc(newCityRef, {
+      await setDoc(rooms, {
         name: channelName,
       });
     }
