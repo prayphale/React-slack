@@ -13,9 +13,9 @@ function App() {
         <div className="App__appBody">
           <Sidebar />
           <Routes>
-            <Route path="/" element={<Header />} >
-
-              </Route>
+            <Route path="/" element={<Header />}>
+              {/* Chat */}
+            </Route>
           </Routes>
         </div>
       </Router>

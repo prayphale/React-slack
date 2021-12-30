@@ -4,10 +4,14 @@ import { collection, doc, setDoc } from "firebase/firestore";
 
 import React from "react";
 import { db } from "src/firebase";
+import { enterRoom } from "src/features/appSlice";
+import { enterScope } from "immer/dist/internal";
 import { useCollection } from "react-firebase-hooks/firestore";
+import { useDispatch } from "react-redux";
 
 function SidebarOption() {
   const [channels, loading, error] = useCollection(collection(db, "rooms"));
+  const dispatch = useDispatch();
 
   const handleAddChannel = async () => {
     console.log("here");
@@ -22,8 +26,14 @@ function SidebarOption() {
     }
   };
 
-  const handleSelectChannel = () => {
-
+  const handleSelectChannel = (channelId: string) => {
+    if (channelId) {
+      dispatch(
+        enterRoom({
+          roomId: channelId,
+        })
+      );
+    }
   };
 
   return (
@@ -62,9 +72,9 @@ function SidebarOption() {
       </div>
 
       {channels?.docs.map((doc) => (
-        <div key={doc.id} id={doc.id} title={doc.data().name}>
+        <h6 key={doc.id} id={doc.id} title={doc.data().name} onClick={() => handleSelectChannel(doc.id)}>
           # {doc.data().name}
-        </div>
+        </h6>
       ))}
     </div>
   );
