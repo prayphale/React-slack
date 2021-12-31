@@ -1,13 +1,33 @@
 import "./Chat.scss";
 
+import React, { useEffect, useState } from "react";
+import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+
 import ChatHeaderLeft from "./ChatHeaderLeft";
 import ChatInput from "./ChatInput/ChatInput";
-import React from "react";
+import { db } from "src/firebase";
 import { selectRoomId } from "../../features/appSlice";
 import { useSelector } from "react-redux";
 
 function Chat() {
-  const roomId = useSelector(selectRoomId);
+  const roomId: string = useSelector(selectRoomId);
+  const [msgs, setMsgs] = useState([]);
+
+  useEffect(() => {
+    if (roomId) {
+      const messageRef = collection(db, "rooms", roomId, "messages");
+
+      const q = query(messageRef, orderBy("timestamp", "asc"));
+
+      onSnapshot(q, (querySnapshot) => {
+        let msgs: any = [];
+        querySnapshot.forEach((doc) => {
+          msgs.push(doc.data());
+        });
+        setMsgs(msgs);
+      });
+    }
+  }, [roomId]);
 
   return (
     <div className="Chat__container">
@@ -21,11 +41,7 @@ function Chat() {
       </div>
 
       <div className="Chat__Messages">{/* List Out of the message */}</div>
-      <ChatInput ChanelId={roomId} />
-      {/* <div className="Chat_Input">
-          //Channel name
-
-      </div> */}
+      <ChatInput ChannelId={roomId} />
     </div>
   );
 }

@@ -24,11 +24,12 @@ function SidebarOption() {
     }
   };
 
-  const handleSelectChannel = (channelId: string) => {
+  const handleSelectChannel = (channelId: string, channelName: string) => {
     if (channelId) {
       dispatch(
         enterRoom({
           roomId: channelId,
+          channelName: channelName,
         })
       );
     }
@@ -70,7 +71,7 @@ function SidebarOption() {
       </div>
 
       {channels?.docs.map((doc) => (
-        <h6 key={doc.id} id={doc.id} title={doc.data().name} onClick={() => handleSelectChannel(doc.id)}>
+        <h6 key={doc.id} id={doc.id} title={doc.data().name} onClick={() => handleSelectChannel(doc.id, doc.data().name)}>
           # {doc.data().name}
         </h6>
       ))}
