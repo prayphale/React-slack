@@ -9,11 +9,15 @@
   }
 
   &__pencilIcon {
-    padding: 8px;
+    padding: 7px;
     color: #49274b;
     font-size: 18px;
     background-color: white;
     border-radius: 999px;
+    height: 20px;
+    padding-top: 0px;
+    margin-right: 0.5rem;
+
   }
 
   &__info {
