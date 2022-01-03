@@ -3,14 +3,16 @@ import "firebase/compat/firestore";
 
 import React, { useState } from "react";
 import { Timestamp, addDoc, collection } from "firebase/firestore";
+import { auth, db } from "src/firebase";
 
 import { ChatContext } from "../Chat";
-import { db } from "src/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { useContext } from "react";
 
 function ChatInput(channelId: any, chatRef: any) {
   const channelName = useContext(ChatContext);
   const [input, setInput] = useState("");
+  const [user] = useAuthState(auth);
 
   const sendMessage = async (e: any) => {
     e.preventDefault();
@@ -24,9 +26,8 @@ function ChatInput(channelId: any, chatRef: any) {
     await addDoc(collectionsMessage, {
       message: input,
       timestamp: Timestamp.fromDate(new Date()),
-      user: "John Justice",
-      userImage:
-        "https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/142819271/original/09dafa4104fa6aeca4e62f33326be4933ae7ccac/create-cartoon-profile-picture-abd7.jpg",
+      user: user?.displayName,
+      userImage: user?.photoURL,
     });
 
     chatRef?.current?.scrollIntoView({
