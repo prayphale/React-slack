@@ -9,7 +9,7 @@ import { useCollection } from "react-firebase-hooks/firestore";
 import { useDispatch } from "react-redux";
 
 function SidebarOption() {
-  const [channels, loading, error] = useCollection(collection(db, "rooms"));
+  const [channels] = useCollection(collection(db, "rooms"));
   const dispatch = useDispatch();
 
   const handleAddChannel = async () => {
@@ -71,7 +71,12 @@ function SidebarOption() {
       </div>
 
       {channels?.docs.map((doc) => (
-        <h6 key={doc.id} id={doc.id} title={doc.data().name} onClick={() => handleSelectChannel(doc.id, doc.data().name)}>
+        <h6
+          key={doc.id}
+          id={doc.id}
+          title={doc.data().name}
+          onClick={() => handleSelectChannel(doc.id, doc.data().name)}
+        >
           # {doc.data().name}
         </h6>
       ))}

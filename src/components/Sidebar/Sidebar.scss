@@ -1,10 +1,10 @@
 .Sidebar {
-    &__container {
-        flex: 0.3;
-        color: white;
-        max-width: 200px;
-        margin-top: 52px;
-        background-color: var(--slack-color);
-        border-top: 1px solid #49274b;
-    }
+  &__container {
+    flex: 0.3;
+    color: white;
+    max-width: 200px;
+    margin-top: 52px;
+    background-color: var(--slack-color);
+    border-top: 1px solid #49274b;
+  }
 }

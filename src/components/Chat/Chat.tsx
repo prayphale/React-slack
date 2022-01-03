@@ -2,21 +2,27 @@ import "./Chat.scss";
 
 import React, { useEffect, useState } from "react";
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import { selectChannelName, selectRoomId } from "../../features/appSlice";
 
 import ChatHeaderLeft from "./ChatHeaderLeft";
 import ChatInput from "./ChatInput/ChatInput";
+import Message from "./Message/Message";
 import { db } from "src/firebase";
-import { selectRoomId } from "../../features/appSlice";
+import { useRef } from "react";
 import { useSelector } from "react-redux";
 
+export const ChatContext = React.createContext("");
+
 function Chat() {
+  const chatRef = useRef<null | HTMLDivElement>(null);
   const roomId: string = useSelector(selectRoomId);
+  const channelName: string = useSelector(selectChannelName);
+
   const [msgs, setMsgs] = useState([]);
 
   useEffect(() => {
     if (roomId) {
       const messageRef = collection(db, "rooms", roomId, "messages");
-
       const q = query(messageRef, orderBy("timestamp", "asc"));
 
       onSnapshot(q, (querySnapshot) => {
@@ -27,22 +33,45 @@ function Chat() {
         setMsgs(msgs);
       });
     }
+
+    chatRef?.current?.scrollIntoView({
+      behavior: "smooth",
+    });
   }, [roomId]);
 
   return (
-    <div className="Chat__container">
-      <div className="Chat__Header">
-        <ChatHeaderLeft />
-        <div className="Chat__HeaderRight">
-          <p>
-            <i className="fal fa-info-circle" /> Details
-          </p>
+    <ChatContext.Provider value={channelName}>
+      <div className="Chat__container">
+        <div className="Chat__Header">
+          <ChatHeaderLeft />
+          <div className="Chat__HeaderRight">
+            <p>
+              <i className="fal fa-info-circle" /> Details
+            </p>
+          </div>
         </div>
-      </div>
 
-      <div className="Chat__Messages">{/* List Out of the message */}</div>
-      <ChatInput ChannelId={roomId} />
-    </div>
+        <div className="Chat__Messages">
+          {msgs.length
+            ? msgs.map((msg, i) => {
+                const { message, timestamp, user, userImage } = msg;
+
+                return (
+                  <Message
+                    key={i}
+                    message={message}
+                    timestamp={timestamp}
+                    user={user}
+                    userImage={userImage}
+                  />
+                );
+              })
+            : null}
+          <div ref={chatRef} />
+        </div>
+        <ChatInput chatRef={chatRef} channelId={roomId} />
+      </div>
+    </ChatContext.Provider>
   );
 }
 

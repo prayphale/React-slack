@@ -4,33 +4,33 @@ import "firebase/compat/firestore";
 import React, { useState } from "react";
 import { Timestamp, addDoc, collection } from "firebase/firestore";
 
+import { ChatContext } from "../Chat";
 import { db } from "src/firebase";
-import { selectChannelName } from '../../../features/appSlice';
-import { useCollection } from "react-firebase-hooks/firestore";
-import { useSelector } from 'react-redux';
+import { useContext } from "react";
 
-function ChatInput(ChannelId: any) {
-  const [channels, loading, error] = useCollection(collection(db, "rooms"));
-  const channelName: string = useSelector(selectChannelName);
-
-
+function ChatInput(channelId: any, chatRef: any) {
+  const channelName = useContext(ChatContext);
   const [input, setInput] = useState("");
 
   const sendMessage = async (e: any) => {
     e.preventDefault();
 
-    if (!ChannelId) {
+    if (!channelId) {
       return false;
     }
-    const id = ChannelId.ChannelId;
+    const id = channelId.channelId;
     const collectionsMessage = collection(db, "rooms", id, "messages");
 
     await addDoc(collectionsMessage, {
       message: input,
       timestamp: Timestamp.fromDate(new Date()),
       user: "John Justice",
-      useImage:
+      userImage:
         "https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/142819271/original/09dafa4104fa6aeca4e62f33326be4933ae7ccac/create-cartoon-profile-picture-abd7.jpg",
+    });
+
+    chatRef?.current?.scrollIntoView({
+      behavior: "smooth",
     });
 
     setInput("");
