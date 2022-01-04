@@ -1,23 +1,22 @@
 .HeaderSearch {
-    &__container {
-        flex: 0.5;
-        opacity: 1;
-        border-radius: 6px;
-        border-color: #421f44;
-        text-align: center;
-        display: flex;
-        padding: 5px 50px;
-        color: gray;
-        border: 1px gray solid;
-    }
+  &__container {
+    flex: 0.5;
+    opacity: 1;
+    border-radius: 6px;
+    border-color: #421f44;
+    text-align: center;
+    display: flex;
+    padding: 5px 50px;
+    color: gray;
+    border: 1px gray solid;
+  }
 
-    &__input {
-        background-color: transparent;
-        border: none;
-        text-align: center;
-        min-width: 30vw;
-        outline: 0;
-        color: white;
-    }
-
+  &__input {
+    background-color: transparent;
+    border: none;
+    text-align: center;
+    min-width: 30vw;
+    outline: 0;
+    color: white;
+  }
 }

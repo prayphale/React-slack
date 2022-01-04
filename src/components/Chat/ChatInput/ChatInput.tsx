@@ -41,9 +41,13 @@ function ChatInput(channelId: any, chatRef: any) {
     <div className="ChatInput__container">
       <form>
         <input
+          type="text"
           value={input}
+          aria-required="true"
           onChange={(e) => setInput(e.target.value)}
           placeholder={`Message #${channelName}`}
+          disabled={!channelName}
+          name="message"
         />
         <button hidden type="submit" onClick={sendMessage}>
           SEND

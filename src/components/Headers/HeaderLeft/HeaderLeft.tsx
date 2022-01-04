@@ -1,5 +1,3 @@
-import './HeaderLeft.scss';
-
 import HeaderAvatar from "./HeaderAvatar";
 import React from "react";
 

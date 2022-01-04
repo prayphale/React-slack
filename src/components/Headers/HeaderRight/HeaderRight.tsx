@@ -1,4 +1,4 @@
-import './HeaderRight.scss';
+import "./HeaderRight.scss";
 
 import React from "react";
 
