@@ -58,13 +58,15 @@ function Chat() {
                   const { message, timestamp, user, userImage } = msg;
 
                   return (
-                    <Message
-                      key={i}
-                      message={message}
-                      timestamp={timestamp}
-                      user={user}
-                      userImage={userImage}
-                    />
+                    <>
+                      <Message
+                        key={i}
+                        message={message}
+                        timestamp={timestamp}
+                        user={user}
+                        userImage={userImage}
+                      />
+                    </>
                   );
                 })
               : null}

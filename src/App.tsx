@@ -1,11 +1,11 @@
 import "./App.scss";
 
+import React, { Profiler } from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
 import Chat from "./components/Chat";
 import Header from "./components/Headers";
 import Login from "./components/Login";
-import React from "react";
 import Sidebar from "./components/Sidebar";
 import Spinner from "react-spinkit";
 import { auth } from "./firebase";
@@ -28,6 +28,18 @@ function App() {
     );
   }
 
+  var callbackFn = (
+    id: string,
+    phase: "mount" | "update",
+    actualDuration: number,
+    baseDuration: number,
+    startTime: number,
+    commitTime: number,
+    interactions: any
+  ) => {
+    console.log(id, phase, actualDuration, baseDuration, startTime, startTime, commitTime);
+  };
+
   return (
     <>
       <div className="App">
@@ -36,11 +48,20 @@ function App() {
             <Login />
           ) : (
             <>
-              <Header />
+              <Profiler id="header" onRender={callbackFn}>
+                <Header />
+              </Profiler>
               <div className="App__appBody">
                 <Sidebar />
                 <Routes>
-                  <Route path="/" element={<Chat />} />
+                  <Route
+                    path="/"
+                    element={
+                      <Profiler id="chat" onRender={callbackFn}>
+                        <Chat />
+                      </Profiler>
+                    }
+                  />
                 </Routes>
               </div>
             </>

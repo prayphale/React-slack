@@ -4,9 +4,7 @@ import React from "react";
 function HeaderLeft() {
   return (
     <>
-      <div className="HeaderLeft__container">
-        <HeaderAvatar />
-      </div>
+      <HeaderAvatar />
     </>
   );
 }
