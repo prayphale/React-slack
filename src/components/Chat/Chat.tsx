@@ -72,7 +72,7 @@ function Chat() {
               : null}
             <div ref={chatRef} />
           </div>
-          <ChatInput ref={chatRef} channelId={roomId} />
+          <ChatInput chatRef={chatRef} channelId={roomId} />
         </div>
       </ChatContext.Provider>
     </>

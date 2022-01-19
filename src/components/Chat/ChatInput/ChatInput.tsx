@@ -10,7 +10,7 @@ import { ChatContext } from "../Chat";
 import ReactDOM from "react-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 
-const ChatInput = React.forwardRef((channelId: any, ref) => {
+const ChatInput = (channelId: any, ref) => {
   const channelName = useContext(ChatContext);
   const inputRef = useRef<null | HTMLInputElement>(null);
 
@@ -61,6 +61,6 @@ const ChatInput = React.forwardRef((channelId: any, ref) => {
     </>,
     document.getElementById("portal-root")!
   );
-});
+};
 
 export default ChatInput;

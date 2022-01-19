@@ -4,6 +4,7 @@ import React, { Profiler } from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
 import Chat from "./components/Chat";
+import ErrorBoundaries from "./components/Error/ErrorBoundaries";
 import Header from "./components/Headers";
 import Login from "./components/Login";
 import Sidebar from "./components/Sidebar";
@@ -37,7 +38,15 @@ function App() {
     commitTime: number,
     interactions: any
   ) => {
-    console.log(id, phase, actualDuration, baseDuration, startTime, startTime, commitTime);
+    console.log(
+      id,
+      phase,
+      actualDuration,
+      baseDuration,
+      startTime,
+      startTime,
+      commitTime
+    );
   };
 
   return (
@@ -45,20 +54,29 @@ function App() {
       <div className="App">
         <Router>
           {!user ? (
-            <Login />
+            <ErrorBoundaries>
+              <Login />
+            </ErrorBoundaries>
           ) : (
             <>
               <Profiler id="header" onRender={callbackFn}>
-                <Header />
+                <ErrorBoundaries>
+                  <Header />
+                </ErrorBoundaries>
               </Profiler>
               <div className="App__appBody">
-                <Sidebar />
+                <ErrorBoundaries>
+                  <Sidebar />
+                </ErrorBoundaries>
+
                 <Routes>
                   <Route
                     path="/"
                     element={
                       <Profiler id="chat" onRender={callbackFn}>
-                        <Chat />
+                        <ErrorBoundaries>
+                          <Chat />
+                        </ErrorBoundaries>
                       </Profiler>
                     }
                   />
