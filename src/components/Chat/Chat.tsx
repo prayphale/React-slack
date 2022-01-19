@@ -1,13 +1,13 @@
 import "./Chat.scss";
 
 import React, { useEffect, useState } from "react";
-import { auth, db } from "src/firebase";
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { selectChannelName, selectRoomId } from "../../features/appSlice";
 
 import ChatHeaderLeft from "./ChatHeaderLeft";
 import ChatInput from "./ChatInput/ChatInput";
 import Message from "./Message/Message";
+import { db } from "src/firebase";
 import { useRef } from "react";
 import { useSelector } from "react-redux";
 
@@ -19,8 +19,6 @@ function Chat() {
   const channelName: string = useSelector(selectChannelName);
 
   const [msgs, setMsgs] = useState([]);
-  const messageRefTest = React.createRef()
-
 
   useEffect(() => {
     if (roomId) {
@@ -66,7 +64,6 @@ function Chat() {
                       timestamp={timestamp}
                       user={user}
                       userImage={userImage}
-                      ref={messageRefTest}
                     />
                   );
                 })

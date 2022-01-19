@@ -7,6 +7,7 @@ import { auth, db } from "src/firebase";
 import { useContext, useRef } from "react";
 
 import { ChatContext } from "../Chat";
+import ReactDOM from "react-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 const ChatInput = React.forwardRef((channelId: any, ref) => {
@@ -35,9 +36,10 @@ const ChatInput = React.forwardRef((channelId: any, ref) => {
       user: user?.displayName,
       userImage: user?.photoURL,
     });
+    setInput("");
   };
 
-  return (
+  return ReactDOM.createPortal(
     <>
       <div className="ChatInput__container">
         <form>
@@ -56,7 +58,8 @@ const ChatInput = React.forwardRef((channelId: any, ref) => {
           </button>
         </form>
       </div>
-    </>
+    </>,
+    document.getElementById("portal-root")!
   );
 });
 
