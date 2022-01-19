@@ -14,20 +14,22 @@ function Login() {
   };
 
   return (
-    <div className="Login__container">
-      <div className="Login__innerContainer">
-        <img
-          src="https://cdn.mos.cms.futurecdn.net/SDDw7CnuoUGax6x9mTo7dd.jpg"
-          alt=""
-        />
-        <h1>Sign in to the Chat Fam</h1>
-        <p>chat.slack.com</p>
+    <>
+      <div className="Login__container">
+        <div className="Login__innerContainer">
+          <img
+            src="https://cdn.mos.cms.futurecdn.net/SDDw7CnuoUGax6x9mTo7dd.jpg"
+            alt=""
+          />
+          <h1>Sign in to the Chat Fam</h1>
+          <p>chat.slack.com</p>
 
-        <button className="btn btn-success" onClick={signIn}>
-          Sign in with Google
-        </button>
+          <button className="btn btn-success" onClick={signIn}>
+            Sign in with Google
+          </button>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

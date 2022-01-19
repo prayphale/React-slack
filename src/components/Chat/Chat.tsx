@@ -19,6 +19,8 @@ function Chat() {
   const channelName: string = useSelector(selectChannelName);
 
   const [msgs, setMsgs] = useState([]);
+  const messageRefTest = React.createRef()
+
 
   useEffect(() => {
     if (roomId) {
@@ -34,44 +36,47 @@ function Chat() {
       });
     }
 
-    chatRef?.current?.scrollIntoView({
+    chatRef.current?.scrollIntoView({
       behavior: "smooth",
     });
   }, [roomId]);
 
   return (
-    <ChatContext.Provider value={channelName}>
-      <div className="Chat__container">
-        <div className="Chat__Header">
-          <ChatHeaderLeft />
-          <div className="Chat__HeaderRight">
-            <p>
-              <i className="fal fa-info-circle" /> Details
-            </p>
+    <>
+      <ChatContext.Provider value={channelName}>
+        <div className="Chat__container">
+          <div className="Chat__Header">
+            <ChatHeaderLeft />
+            <div className="Chat__HeaderRight">
+              <p>
+                <i className="fal fa-info-circle" /> Details
+              </p>
+            </div>
           </div>
-        </div>
 
-        <div className="Chat__Messages">
-          {msgs.length
-            ? msgs.map((msg, i) => {
-                const { message, timestamp, user, userImage } = msg;
+          <div className="Chat__Messages">
+            {msgs.length
+              ? msgs.map((msg, i) => {
+                  const { message, timestamp, user, userImage } = msg;
 
-                return (
-                  <Message
-                    key={i}
-                    message={message}
-                    timestamp={timestamp}
-                    user={user}
-                    userImage={userImage}
-                  />
-                );
-              })
-            : null}
-          <div ref={chatRef} />
+                  return (
+                    <Message
+                      key={i}
+                      message={message}
+                      timestamp={timestamp}
+                      user={user}
+                      userImage={userImage}
+                      ref={messageRefTest}
+                    />
+                  );
+                })
+              : null}
+            <div ref={chatRef} />
+          </div>
+          <ChatInput ref={chatRef} channelId={roomId} />
         </div>
-        <ChatInput chatRef={chatRef} channelId={roomId} />
-      </div>
-    </ChatContext.Provider>
+      </ChatContext.Provider>
+    </>
   );
 }
 

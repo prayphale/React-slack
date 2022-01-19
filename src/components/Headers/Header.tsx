@@ -7,11 +7,13 @@ import React from "react";
 
 function Header() {
   return (
-    <div className="Header__container">
-      <HeaderLeft />
-      <HeaderSearch />
-      <HeaderRight />
-    </div>
+    <>
+      <div className="Header__container">
+        <HeaderLeft />
+        <HeaderSearch />
+        <HeaderRight />
+      </div>
+    </>
   );
 }
 

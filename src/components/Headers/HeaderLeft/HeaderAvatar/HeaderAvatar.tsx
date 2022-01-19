@@ -10,18 +10,20 @@ function HeaderAvatar() {
     "https://thumbs.dreamstime.com/b/man-profile-cartoon-smiling-round-icon-vector-illustration-graphic-design-135443422.jpg";
 
   return (
-    <div className="HeaderAvatar__container">
-      <img
-        className="HeaderAvatar__avatar"
-        onClick={() => auth.signOut()}
-        src={user ? user.photoURL! : defaultImg}
-        alt={user?.displayName!}
-      />
+    <>
+      <div className="HeaderAvatar__container">
+        <img
+          className="HeaderAvatar__avatar"
+          onClick={() => auth.signOut()}
+          src={user ? user.photoURL! : defaultImg}
+          alt={user?.displayName!}
+        />
 
-      <div className="HeaderAvatar__clockIcon">
-        <i className="far fa-clock"></i>
+        <div className="HeaderAvatar__clockIcon">
+          <i className="far fa-clock"></i>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

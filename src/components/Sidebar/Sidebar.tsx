@@ -6,10 +6,12 @@ import SidebarOption from "./SidebarOption";
 
 function Sidebar() {
   return (
-    <div className="Sidebar__container">
-      <SidebarHeader />
-      <SidebarOption />
-    </div>
+    <>
+      <div className="Sidebar__container">
+        <SidebarHeader />
+        <SidebarOption />
+      </div>
+    </>
   );
 }
 

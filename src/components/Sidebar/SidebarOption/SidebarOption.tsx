@@ -36,51 +36,53 @@ function SidebarOption() {
   };
 
   return (
-    <div className="SidebarOption__container">
-      <div>
-        <i className="fas fa-comment-alt-lines" /> Threads
-      </div>
-      <div>
-        <i className="fas fa-inbox " /> Mentions & reactions
-      </div>
-      <div>
-        <i className="fas fa-envelope-open" /> Saved items
-      </div>
-      <div>
-        <i className="far fa-bookmark" /> Channel browser
-      </div>
-      <div>
-        <i className="fas fa-user-friends" /> People & user groups
-      </div>
-      <div>
-        <i className="fas fa-bars" /> Apps
-      </div>
-      <div>
-        <i className="fas fa-copy" /> File browser
-      </div>
-      <div>
-        <i className="fas fa-chevron-up" /> Show less
-      </div>
-      <hr />
-      <div>
-        <i className="fas fa-chevron-down" /> Channels
-      </div>
-      <hr />
-      <div onClick={handleAddChannel}>
-        <i className="fal fa-plus" /> Add Channel
-      </div>
+    <>
+      <div className="SidebarOption__container">
+        <div>
+          <i className="fas fa-comment-alt-lines" /> Threads
+        </div>
+        <div>
+          <i className="fas fa-inbox " /> Mentions & reactions
+        </div>
+        <div>
+          <i className="fas fa-envelope-open" /> Saved items
+        </div>
+        <div>
+          <i className="far fa-bookmark" /> Channel browser
+        </div>
+        <div>
+          <i className="fas fa-user-friends" /> People & user groups
+        </div>
+        <div>
+          <i className="fas fa-bars" /> Apps
+        </div>
+        <div>
+          <i className="fas fa-copy" /> File browser
+        </div>
+        <div>
+          <i className="fas fa-chevron-up" /> Show less
+        </div>
+        <hr />
+        <div>
+          <i className="fas fa-chevron-down" /> Channels
+        </div>
+        <hr />
+        <div onClick={handleAddChannel}>
+          <i className="fal fa-plus" /> Add Channel
+        </div>
 
-      {channels?.docs.map((doc) => (
-        <h6
-          key={doc.id}
-          id={doc.id}
-          title={doc.data().name}
-          onClick={() => handleSelectChannel(doc.id, doc.data().name)}
-        >
-          # {doc.data().name}
-        </h6>
-      ))}
-    </div>
+        {channels?.docs.map((doc) => (
+          <h6
+            key={doc.id}
+            id={doc.id}
+            title={doc.data().name}
+            onClick={() => handleSelectChannel(doc.id, doc.data().name)}
+          >
+            # {doc.data().name}
+          </h6>
+        ))}
+      </div>
+    </>
   );
 }
 
